@@ -1,10 +1,33 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-import { ExampleComponent } from 'my-radio'
-import 'my-radio/dist/index.css'
+import MyRadio from 'my-radio'
 
-const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+class App extends Component {
+    state = {
+        items: [
+            { txt: 'item 1', checked: false },
+            { txt: 'item 2', checked: false },
+            { txt: 'item 3', checked: true }
+        ]
+    }
+
+    handler (refer, items) {
+        this.setState({ items })
+    }
+
+    render () {
+        const { items } = this.state
+
+        return (
+            <MyRadio
+                refer='myRadio'
+                heading='My Radio Buttons'
+                handler={this.handler.bind(this)}
+                items={items}
+            />
+        )
+    }
+
 }
 
 export default App
